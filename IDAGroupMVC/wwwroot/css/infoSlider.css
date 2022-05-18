@@ -1,0 +1,28 @@
+#infoSliders {
+  background-color: #F8F8F8;
+  padding: 40px 0px; }
+  #infoSliders .container .row .infoSlider {
+    position: relative; }
+    #infoSliders .container .row .infoSlider .owl-nav button {
+      transition: all 0.4s;
+      visibility: hidden;
+      opacity: 0.7;
+      background-color: #708090;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%; }
+      #infoSliders .container .row .infoSlider .owl-nav button span {
+        font-size: 33px;
+        color: white; }
+    #infoSliders .container .row .infoSlider .owl-nav button:hover {
+      background-color: #0d3866; }
+    #infoSliders .container .row .infoSlider .owl-nav .owl-next {
+      position: absolute;
+      top: 43px;
+      right: 0px; }
+    #infoSliders .container .row .infoSlider .owl-nav .owl-prev {
+      position: absolute;
+      top: 43px;
+      left: 0px; }
+  #infoSliders .container .row .mainSlider:hover .owl-nav button {
+    visibility: visible; }

@@ -1,0 +1,85 @@
+body {
+    footer {
+        #footUp {
+            background-color: #2B2B2B;
+            padding: 26px 0px 0px 0px;
+
+            .container {
+                border-top: 1px solid #3a3a3a;
+                ;
+                border-left: 1px solid #3a3a3a;
+                ;
+                border-bottom: 1px solid #3a3a3a;
+                ;
+
+                .row {
+                    .footLeft {
+
+                        h6 {
+                            color: #949494;
+                            padding: 0px 22px;
+                            font-size: 18px;
+                        }
+
+                        p {
+                            color: #747474;
+                            font-weight: 500;
+                            font-size: 17px;
+                            letter-spacing: 3px;
+                        }
+                    }
+
+                    .footMiddle {
+
+                        h6 {
+                            color: #949494;
+                            padding: 0px 22px;
+                            font-size: 18px;
+
+                        }
+
+                        p {
+                            color: #747474;
+                            font-weight: 500;
+                            font-size: 17px;
+                            padding: 5px 0px;
+                        }
+                    }
+
+                    .footRight {
+
+                        h6 {
+                            color: #949494;
+                            padding: 0px 22px;
+                            font-size: 18px;
+                        }
+
+                        p {
+                            color: #747474;
+                            font-weight: 500;
+                            font-size: 17px;
+                            padding: 5px 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #footDown {
+        background-color: #2B2B2B;
+        padding: 0px 0px 4px 0px;
+        .container {
+            border-left: 1px solid #3a3a3a;
+            border-bottom: 1px solid #3a3a3a;
+
+            .row {
+                .CopyrightText {
+                    color: #747474;
+
+                    a {}
+                }
+            }
+        }
+    }
+}

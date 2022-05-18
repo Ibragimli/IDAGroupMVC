@@ -1,0 +1,482 @@
+body footer #footUp {
+  background-color: #2B2B2B;
+  padding: 26px 0px 0px 0px; }
+  body footer #footUp .container {
+    border-top: 1px solid #3a3a3a;
+    border-left: 1px solid #3a3a3a;
+    border-bottom: 1px solid #3a3a3a; }
+    body footer #footUp .container .row .footLeft h6 {
+      color: #949494;
+      padding: 0px 22px;
+      font-size: 18px; }
+    body footer #footUp .container .row .footLeft p {
+      color: #747474;
+      font-weight: 500;
+      font-size: 17px;
+      letter-spacing: 3px; }
+    body footer #footUp .container .row .footMiddle h6 {
+      color: #949494;
+      padding: 0px 22px;
+      font-size: 18px; }
+    body footer #footUp .container .row .footMiddle p {
+      color: #747474;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 5px 0px; }
+    body footer #footUp .container .row .footRight h6 {
+      color: #949494;
+      padding: 0px 22px;
+      font-size: 18px; }
+    body footer #footUp .container .row .footRight p {
+      color: #747474;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 5px 0px; }
+
+body #footDown {
+  background-color: #2B2B2B;
+  padding: 0px 0px 4px 0px; }
+  body #footDown .container {
+    border-left: 1px solid #3a3a3a;
+    border-bottom: 1px solid #3a3a3a; }
+    body #footDown .container .row .CopyrightText {
+      color: #747474; }
+
+header #headers {
+  z-index: 12 !important;
+  background-color: #030303;
+  transition: all .44s ease-in;
+  opacity: 0.75;
+  position: relative;
+  top: 50px;
+  left: 0%;
+  width: 100%; }
+  header #headers .container .row .headLogo {
+    height: 100%; }
+    header #headers .container .row .headLogo a {
+      color: white;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      header #headers .container .row .headLogo a img {
+        height: 100%;
+        width: 120px; }
+  header #headers .container .row .headNav {
+    display: flex;
+    align-items: center; }
+    header #headers .container .row .headNav ul li a {
+      border-radius: 0px;
+      letter-spacing: 0.5px;
+      border-right: 1px dashed gray;
+      font-size: 17px;
+      color: white;
+      margin-left: 2px;
+      margin-right: 2px;
+      border-right-width: 1.7px; }
+    header #headers .container .row .headNav ul li a:hover {
+      border-radius: 3px;
+      background-color: #0d6efd;
+      transition: all 0.6s; }
+
+* {
+  box-sizing: border-box; }
+  * a {
+    text-decoration: none; }
+  * li {
+    list-style: none; }
+  * h1, * h2, * h3, * h4, * h5, * h6, * a, * ul, * li, * p {
+    font-family: 'Raleway', sans-serif !important; }
+
+#slider {
+  padding: 40px 0px; }
+  #slider .container .row .mainSlider {
+    position: relative; }
+    #slider .container .row .mainSlider .owl-nav button {
+      transition: all 0.4s;
+      visibility: hidden;
+      opacity: 0.7;
+      background-color: #708090;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%; }
+      #slider .container .row .mainSlider .owl-nav button span {
+        font-size: 33px;
+        color: white; }
+    #slider .container .row .mainSlider .owl-nav button:hover {
+      background-color: #0d3866; }
+    #slider .container .row .mainSlider .owl-nav .owl-next {
+      position: absolute;
+      top: 43px;
+      right: 0px; }
+    #slider .container .row .mainSlider .owl-nav .owl-prev {
+      position: absolute;
+      top: 43px;
+      left: 0px; }
+  #slider .container .row .mainSlider:hover .owl-nav button {
+    visibility: visible; }
+
+#about {
+  padding: 40px 0px; }
+  #about .container .row .aboutText {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px; }
+    #about .container .row .aboutText h1 {
+      display: flex;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin: 15px 0px 10px 0px; }
+    #about .container .row .aboutText p {
+      letter-spacing: 0.5px;
+      color: #4c4c4c; }
+  #about .container .row .aboutImage {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+
+#contact {
+  padding: 40px 0px; }
+  #contact .container .row .contactImage img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; }
+  #contact .container .row .contactInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    #contact .container .row .contactInputs h1 {
+      display: flex;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin: 15px 0px 10px 0px; }
+    #contact .container .row .contactInputs form .row input {
+      margin-top: 15px;
+      border-radius: 3px;
+      border-color: #EDEDED;
+      background-color: #EDEDED;
+      box-shadow: none;
+      color: #000;
+      height: 35px;
+      width: 100%;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #555; }
+    #contact .container .row .contactInputs form .row textarea {
+      height: 140px;
+      max-height: 140px;
+      border-radius: 3px;
+      border-color: #EDEDED;
+      background-color: #EDEDED;
+      box-shadow: none;
+      color: #000;
+      width: 100%;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #555; }
+    #contact .container .row .contactInputs form .row .contactBtn {
+      display: flex;
+      justify-content: end; }
+      #contact .container .row .contactInputs form .row .contactBtn button {
+        margin-top: 10px;
+        padding: 7px 25px 7px 25px; }
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+#product {
+  padding: 40px 0px;
+  background-color: #F8F8F8; }
+  #product .container .row .productBoxs {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #product .container .row .productBoxs .productBox {
+      position: relative;
+      margin-bottom: 20px;
+      height: 250px;
+      border-radius: 10px;
+      border: 1px solid #c7c7c7;
+      background-color: white;
+      transition: all 0.5s; }
+      #product .container .row .productBoxs .productBox .prdBoxImage a img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 5px; }
+      #product .container .row .productBoxs .productBox .prdBoxName {
+        position: absolute;
+        bottom: 70px;
+        left: 0px;
+        transition: all 0.5s;
+        width: 88%;
+        background-color: #F5F5F5;
+        padding: 12px 15px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        font-size: 15px;
+        cursor: pointer; }
+        #product .container .row .productBoxs .productBox .prdBoxName a {
+          display: flex;
+          justify-content: space-between;
+          align-items: center; }
+          #product .container .row .productBoxs .productBox .prdBoxName a h3 {
+            font-weight: 600;
+            color: #5f5f5f; }
+          #product .container .row .productBoxs .productBox .prdBoxName a i {
+            margin-left: 2px;
+            color: #5f5f5f; }
+      #product .container .row .productBoxs .productBox .prdBoxText {
+        position: absolute;
+        bottom: 9px; }
+        #product .container .row .productBoxs .productBox .prdBoxText a p {
+          padding: 21px 0px 21px 5px;
+          color: #5f5f5f;
+          font-weight: 550;
+          font-size: 13px; }
+    #product .container .row .productBoxs .productBox:hover {
+      border: 1px solid #337ab7; }
+      #product .container .row .productBoxs .productBox:hover .prdBoxName {
+        background-color: #337ab7; }
+        #product .container .row .productBoxs .productBox:hover .prdBoxName a h3 {
+          color: white; }
+        #product .container .row .productBoxs .productBox:hover .prdBoxName a i {
+          color: white; }
+      #product .container .row .productBoxs .productBox:hover .prdBoxText a p {
+        color: #5f5f5fcf; }
+
+#productInfo {
+  padding: 40px 0px;
+  background-color: #F8F8F8; }
+  #productInfo .container .row .infoLeft .infoTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    #productInfo .container .row .infoLeft .infoTitle h1 {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+      color: #747474; }
+  #productInfo .container .row .infoLeft .infoText {
+    margin-top: 20px; }
+    #productInfo .container .row .infoLeft .infoText p {
+      letter-spacing: 2px; }
+  #productInfo .container .row .infoLeft .infoBtn {
+    display: flex;
+    justify-content: end;
+    margin-top: 10px; }
+    #productInfo .container .row .infoLeft .infoBtn .button-55 {
+      align-self: center;
+      background-color: #fff;
+      background-image: none;
+      background-position: 0 90%;
+      background-repeat: repeat no-repeat;
+      background-size: 4px 3px;
+      border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+      border-style: solid;
+      border-width: 2px;
+      box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+      box-sizing: border-box;
+      color: #41403e;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Neucha, sans-serif;
+      font-size: 1rem;
+      line-height: 23px;
+      outline: none;
+      padding: .75rem;
+      text-decoration: none;
+      transition: all 235ms ease-in-out;
+      border-bottom-left-radius: 15px 255px;
+      border-bottom-right-radius: 225px 15px;
+      border-top-left-radius: 255px 15px;
+      border-top-right-radius: 15px 225px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation; }
+    #productInfo .container .row .infoLeft .infoBtn .button-55:hover {
+      color: wheat;
+      background-color: #337ab7;
+      box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+      transform: translate3d(0, 2px, 0); }
+    #productInfo .container .row .infoLeft .infoBtn .button-55:focus {
+      box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px; }
+  #productInfo .infoRight h1 {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    color: #747474; }
+  #productInfo .infoRight ul {
+    margin-top: 15px; }
+    #productInfo .infoRight ul li a {
+      display: flex;
+      justify-content: space-between;
+      background-color: #EFEFEF;
+      margin-bottom: 15px;
+      padding: 11px 15px;
+      border-radius: 20px;
+      color: #747474;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: all 0.4s; }
+    #productInfo .infoRight ul li a:hover {
+      color: white;
+      background-color: #337ab7; }
+
+#infoSliders {
+  background-color: #F8F8F8;
+  padding: 40px 0px; }
+  #infoSliders .container .row .infoSlider {
+    position: relative; }
+    #infoSliders .container .row .infoSlider .owl-nav button {
+      transition: all 0.4s;
+      visibility: hidden;
+      opacity: 0.7;
+      background-color: #708090;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%; }
+      #infoSliders .container .row .infoSlider .owl-nav button span {
+        font-size: 33px;
+        color: white; }
+    #infoSliders .container .row .infoSlider .owl-nav button:hover {
+      background-color: #0d3866; }
+    #infoSliders .container .row .infoSlider .owl-nav .owl-next {
+      position: absolute;
+      top: 43px;
+      right: 0px; }
+    #infoSliders .container .row .infoSlider .owl-nav .owl-prev {
+      position: absolute;
+      top: 43px;
+      left: 0px; }
+  #infoSliders .container .row .mainSlider:hover .owl-nav button {
+    visibility: visible; }

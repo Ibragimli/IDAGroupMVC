@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model HomeViewModel
+<main>
+
+    @* HomeSlider *@
+    <section id="slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mainSlider owl-carousel owl-theme">
+                        @foreach (var item in Model.CompanySlider)
+                        {
+                            <div class="item">
+                                <a href="#">
+                                    <img src="~/Images/slidersHome/@item.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image"
+                                         alt="">
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "About";
+}
+@model AboutViewModel
+
+<main>
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 aboutText" style="justify-content: center;">
+                    <h1>@Model.Settings.FirstOrDefault(x=>x.Key == "AboutTitle").Value</h1>
+                    <p>
+                        @Model.Settings.FirstOrDefault(x => x.Key == "AboutText").Value
+                    </p>
+                </div>
+                <div class="col-lg-5 aboutImage">
+                    <img src="~/Images/about/@Model.Settings.FirstOrDefault(x => x.Key == "AboutImage").Value" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

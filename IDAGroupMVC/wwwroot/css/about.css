@@ -1,0 +1,21 @@
+#about {
+  padding: 40px 0px; }
+  #about .container .row .aboutText {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px; }
+    #about .container .row .aboutText h1 {
+      display: flex;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin: 15px 0px 10px 0px; }
+    #about .container .row .aboutText p {
+      letter-spacing: 0.5px;
+      color: #4c4c4c; }
+  #about .container .row .aboutImage {
+    display: flex;
+    align-items: center;
+    justify-content: center; }

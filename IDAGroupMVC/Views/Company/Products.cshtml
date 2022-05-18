@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "Products";
+}
+
+@model ProductViewModel
+
+<main>
+    <section id="product">
+        <div class="container">
+            <div class="row">
+                @foreach (var prd in Model.PagenatedCompanys)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 productBoxs">
+                        <div class="productBox">
+                            <div class="prdBoxImage">
+                                <a asp-action="detail" asp-controller="company" asp-route-id="@prd.Id">
+                                    <img src="~/Images/products/@prd.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image"
+                                         alt="">
+                                </a>
+                            </div>
+                            <div class="prdBoxName">
+                                <a asp-action="detail" asp-controller="company" asp-route-id="@prd.Id">
+                                    <h3>@prd.Name</h3>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </a>
+                            </div>
+                            <div class="prdBoxText">
+                                <a asp-action="detail" asp-controller="company" asp-route-id="@prd.Id">
+                                    <p> @prd.Title</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row productsPagination">
+                <nav aria-label="..." style="display: flex;justify-content: center;">
+                    <ul class="pagination">
+                        @if (Model.PagenatedCompanys.HasPrev)
+                        {
+                            <li class="page-item disabled">
+                                <a asp-action="products" asp-controller="company" asp-route-page="@(Model.PagenatedCompanys.PageIndex-1)" class="page-link" style="padding: 12px 17px;">Previous</a>
+                            </li>
+                        }
+
+                        @for (int i = 1; i <= Model.PagenatedCompanys.TotalPages; i++)
+                        {
+                            <li class="page-item @(Model.PagenatedCompanys.PageIndex==i?"active":"")" aria-current="page">
+                                <a asp-action="products" asp-controller="company" asp-route-page="@i" class="page-link" style="padding: 12px 17px;" >@i</a>
+                            </li>
+                        }
+
+                        @if (Model.PagenatedCompanys.HasNext)
+                        {
+                            <li class="page-item">
+                                <a asp-action="products" asp-controller="company" asp-route-page="@(Model.PagenatedCompanys.PageIndex+1)" class="page-link" style="padding: 12px 17px;">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </section>
+    <div class="container">
+    </div>
+</main>
+
