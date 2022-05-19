@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static IDAGroupMVC.Services.EmailServices;
 
 namespace IDAGroupMVC.Controllers
 {
     public class ContactController : Controller
     {
         private readonly DataContext _context;
+        private readonly IEmailService _emailService;
 
-        public ContactController(DataContext context)
+        public ContactController(DataContext context,IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
         public IActionResult ContactUs()
         {
@@ -61,6 +64,7 @@ namespace IDAGroupMVC.Controllers
 
             _context.Contacts.Add(newContact);
             _context.SaveChanges();
+            _emailService.Send(contact.Email, "Contact", contact.Email);
             return RedirectToAction("contactus", "contact");
         }
         private static bool EmailValidate(string emailAddress)

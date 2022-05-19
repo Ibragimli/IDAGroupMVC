@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static IDAGroupMVC.Services.EmailServices;
 
 namespace IDAGroupMVC
 {
@@ -36,6 +37,7 @@ namespace IDAGroupMVC
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.User.RequireUniqueEmail = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
+            services.AddScoped<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
