@@ -9,7 +9,7 @@ namespace IDAGroupMVC.Models
     public class Contact : BaseEntity
     {
         [Required]
-        [StringLength(maximumLength: 31)]
+        [StringLength(maximumLength: 31,MinimumLength =3)]
         public string Fullname { get; set; }
         [Required]
         [StringLength(maximumLength: 50)]
@@ -17,7 +17,7 @@ namespace IDAGroupMVC.Models
         [Required]
         [StringLength(maximumLength: 20)]
         public string PhoneNumber { get; set; }
-        [StringLength(maximumLength: 50)]
+        [StringLength(maximumLength: 50,MinimumLength =3)]
         [Required]
         public string Subject { get; set; }
         [StringLength(maximumLength: 555)]
