@@ -3,6 +3,7 @@ using IDAGroupMVC.ViewModels.Contacts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -61,10 +62,22 @@ namespace IDAGroupMVC.Controllers
             }
 
             Contact newContact = CreateContact(contact);
-
+            
             _context.Contacts.Add(newContact);
             _context.SaveChanges();
-            _emailService.Send(contact.Email, "Contact", contact.Email);
+            string body = string.Empty;
+
+            using (StreamReader reader = new StreamReader("wwwroot/templates/contactInfo.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{{fullname}}", contact.Fullname);
+            body = body.Replace("{{subject}}", contact.Subject);
+            body = body.Replace("{{email}}", contact.Email);
+            body = body.Replace("{{message}}", contact.Text);
+            body = body.Replace("{{phoneNumber}}", contact.PhoneNumber);
+            body = body.Replace("{{sendDate}}", contact.CreatedDate.ToString("dddd, dd MMMM yyyy HH:mm:ss"));
+            _emailService.Send(contact.Email, "Contact", body);
             return RedirectToAction("contactus", "contact");
         }
         private static bool EmailValidate(string emailAddress)
