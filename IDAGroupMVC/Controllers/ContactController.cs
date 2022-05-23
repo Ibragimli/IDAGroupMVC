@@ -16,7 +16,7 @@ namespace IDAGroupMVC.Controllers
         private readonly DataContext _context;
         private readonly IEmailService _emailService;
 
-        public ContactController(DataContext context,IEmailService emailService)
+        public ContactController(DataContext context, IEmailService emailService)
         {
             _context = context;
             _emailService = emailService;
@@ -44,41 +44,60 @@ namespace IDAGroupMVC.Controllers
                 Setting = _context.Settings.Where(x => x.IsDelete == false).ToList(),
                 Contact = new Contact(),
             };
+
+            ///EmailValidator
             bool resultEmail = EmailValidate(contact.Email);
             if (resultEmail == false)
             {
                 ModelState.AddModelError(contact.Email, "-isn`t email");
                 return View(contactVM);
             }
+
+            ///PhoneValidator
             bool resultPhoneNumber = PhoneNumberValidate(contact.PhoneNumber);
             if (resultPhoneNumber == false)
             {
                 ModelState.AddModelError(contact.PhoneNumber, "-isn`t correct number");
                 return View(contactVM);
             }
+
             if (!ModelState.IsValid)
             {
                 return View(contactVM);
             }
 
+            ///CreateContact
             Contact newContact = CreateContact(contact);
-            
+
             _context.Contacts.Add(newContact);
             _context.SaveChanges();
+
+            ///EmailSend
+            var body = EmailBody(contact);
+            _emailService.Send(contact.Email, "Contact", body);
+
+            return RedirectToAction("contactus", "contact");
+        }
+
+
+
+        private static string EmailBody(Contact contact)
+        {
             string body = string.Empty;
 
             using (StreamReader reader = new StreamReader("wwwroot/templates/contactInfo.html"))
             {
                 body = reader.ReadToEnd();
             }
+
             body = body.Replace("{{fullname}}", contact.Fullname);
             body = body.Replace("{{subject}}", contact.Subject);
             body = body.Replace("{{email}}", contact.Email);
             body = body.Replace("{{message}}", contact.Text);
             body = body.Replace("{{phoneNumber}}", contact.PhoneNumber);
             body = body.Replace("{{sendDate}}", contact.CreatedDate.ToString("dddd, dd MMMM yyyy HH:mm:ss"));
-            _emailService.Send(contact.Email, "Contact", body);
-            return RedirectToAction("contactus", "contact");
+
+            return body;
         }
         private static bool EmailValidate(string emailAddress)
         {
@@ -101,7 +120,6 @@ namespace IDAGroupMVC.Controllers
             }
             return false;
         }
-
         private static Contact CreateContact(Contact contact)
         {
             var newContact = new Contact
