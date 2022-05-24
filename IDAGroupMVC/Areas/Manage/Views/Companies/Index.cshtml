@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model List<Company>
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="displ card-header">
+                        <h4 class="card-title">
+                            Companies Panel
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-primary mb-1" asp-action="create" asp-controller="companies">Create</a>
+
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>IsHome</th>
+                                        <th>ModifiedDate</th>
+                                        <th>Website</th>
+                                        <th>Descripton</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var companies in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="~/uploads/products/@companies.CompanyImages.FirstOrDefault(x => x.PosterStatus == true)?.Image" width="100" height="100" />
+                                            </td>
+                                            <td>@companies.Name</td>
+                                            <td>@companies.Title</td>
+                                            <td>
+                                                <span class="badge rounded-pill @(companies.IsHome == true? "bg-success": "bg-danger") "> @companies.IsHome</span>
+
+                                            </td>
+                                            <td>@companies.ModifiedDate</td>
+                                            <td>@companies.Website</td>
+                                            <td>@companies.Description.Substring(0, 70)</td>
+                                            <td class="text-center">
+                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="companies" asp-route-id="@companies.Id">Edit</a>
+                                                <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="companies" asp-route-id="@companies.Id">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>IsHome</th>
+                                        <th>ModifiedDate</th>
+                                        <th>Website</th>
+                                        <th>Descripton</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/manage/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/manage/js/plugins-init/datatables.init.js"></script>
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

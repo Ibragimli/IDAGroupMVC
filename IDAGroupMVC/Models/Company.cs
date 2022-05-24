@@ -16,7 +16,7 @@ namespace IDAGroupMVC.Models
         public string Title { get; set; }
         public bool IsHome { get; set; }
         [StringLength(maximumLength: 500)]
-        public string Descripton { get; set; }
+        public string Description { get; set; }
         [StringLength(maximumLength: 150, MinimumLength = 10)]
         public string Website { get; set; }
         [NotMapped]

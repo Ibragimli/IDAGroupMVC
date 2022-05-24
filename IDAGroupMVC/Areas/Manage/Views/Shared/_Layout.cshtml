@@ -15,15 +15,23 @@
 
     <!-- PAGE TITLE HERE -->
     <title>Admin Dashboard</title>
-
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="~/manage/images/favicon.png">
     <link href="~/manage/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="~/manage/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="~/manage/vendor/nouislider/nouislider.min.css">
-
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link href="~/manage/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link href="~/manage/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link href="~/manage/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="~/manage/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/manage/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <!-- Style css -->
     <link href="~/manage/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="~/manage/css/areastyle.css" rel="stylesheet">
 
 </head>
 <body>
@@ -705,37 +713,10 @@
                             <span class="nav-text">Dashboard</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="index.html">Dashboard Light</a></li>
-                           
+                            <li><a asp-action="index" asp-controller="companies">Companies Panel</a></li>
                         </ul>
-
                     </li>
                 </ul>
-                <div class="side-bar-profile">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="side-bar-profile-img">
-                            <img src="~/manage/images/user.jpg" alt="">
-                        </div>
-                        <div class="profile-info1">
-                            <h4 class="fs-18 font-w500">Soeng Souy</h4>
-                            <span>example@mail.com</span>
-                        </div>
-                        <div class="profile-button">
-                            <i class="fas fa-caret-down scale5 text-light"></i>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2 progress-info">
-                        <span class="fs-12"><i class="fas fa-star text-orange me-2"></i>Task Progress</span>
-                        <span class="fs-12">20/45</span>
-                    </div>
-                    <div class="progress default-progress">
-                        <div class="progress-bar bg-gradientf progress-animated" style="width: 45%; height:10px;" role="progressbar">
-                            <span class="sr-only">45% Complete</span>
-                        </div>
-                    </div>
-                </div>
-
-              
             </div>
         </div>
         <!--**********************************
@@ -795,6 +776,7 @@
     <script src="~/manage/js/dlabnav-init.js"></script>
     <script src="~/manage/js/demo.js"></script>
     <script src="~/manage/js/styleSwitcher.js"></script>
+
     <script>
         function cardsCenter() {
 
@@ -841,6 +823,7 @@
         });
 
     </script>
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>
