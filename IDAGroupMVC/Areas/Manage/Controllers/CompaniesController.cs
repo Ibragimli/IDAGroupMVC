@@ -40,16 +40,16 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Company company)
         {
+            ///Required
             IsRequired(company);
             if (!ModelState.IsValid) return View();
-            var PosterIsCheck = PosterImageCheck(company);
-            if (!PosterIsCheck) ModelState.AddModelError("", "");
-           
-            var isCheck = ImagesCheck(company);
-            if (!isCheck) ModelState.AddModelError("", "");
 
-          
+            //Check
+            PosterImageCheck(company);
+            ImagesCheck(company);
+            if (!ModelState.IsValid) return View();
 
+            //Create
             CreatePosterImage(company);
             CreateImage(company);
 
@@ -59,51 +59,52 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         }
 
         // GET: Manage/Companies/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var company = await _context.Companies.FindAsync(id);
-            if (company == null)
-            {
-                return NotFound();
-            }
+            if (!CompanyExists(id)) return RedirectToAction("notfound", "error");
+            var company = await _context.Companies.Include(x => x.CompanyImages).FirstOrDefaultAsync(x => x.Id == id);
             return View(company);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Company company)
+        public async Task<IActionResult> Edit(Company company)
         {
-            if (id != company.Id)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(company);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompanyExists(company.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
+            if (!CompanyExists(company.Id)) return RedirectToAction("notfound", "error");
+
+            Company checkCompany = await _context.Companies.Include(x => x.CompanyImages).FirstOrDefaultAsync(x => x.Id == company.Id);
+            ///Required
+            IsRequired(company);
+            if (!ModelState.IsValid) return View();
+
+            //Check
+            PosterImageCheck(company);
+            ImagesCheck(company);
+            if (!ModelState.IsValid) return View();
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        _context.Update(company);
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if (!CompanyExists(company.Id))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
+            //    return RedirectToAction(nameof(Index));
+            //}
             return View(company);
         }
 
@@ -145,64 +146,59 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             {
                 ModelState.AddModelError("Name", "Name is required");
             }
-            else if (company.Title == null)
+            if (company.Title == null)
             {
                 ModelState.AddModelError("Title", "Title is required");
 
             }
-            else if (company.Website == null)
+            if (company.Website == null)
             {
                 ModelState.AddModelError("Website", "Website is required");
 
             }
-            else if (company.Description == null)
+            if (company.Description == null)
             {
                 ModelState.AddModelError("Description", "Description is required");
 
             }
 
-            else if (company.PosterImageFile == null)
+            if (company.PosterImageFile == null)
             {
                 ModelState.AddModelError("PosterImageFile", "PosterImageFile is required");
 
             }
-            else if (company.CompanyImages == null)
+            if (company.ImageFiles == null)
             {
-                ModelState.AddModelError("CompanyImages", "CompanyImages is required");
+                ModelState.AddModelError("ImageFiles", "ImageFiles is required");
 
             }
         }
-        private bool PosterImageCheck(Company company)
+        private void PosterImageCheck(Company company)
         {
             if (company.PosterImageFile.ContentType != "image/png" && company.PosterImageFile.ContentType != "image/jpeg")
             {
                 ModelState.AddModelError("PosterImageFile", "Image type only (png and jpeg");
-                return false;
             }
             if (company.PosterImageFile.Length > 2097152)
             {
                 ModelState.AddModelError("PosterImageFile", "PosterImageFile max size is 2MB");
-                return false;
             }
-            return true;
         }
-        private bool ImagesCheck(Company company)
+        private void ImagesCheck(Company company)
         {
             foreach (var image in company.ImageFiles)
             {
                 if (image.ContentType != "image/png" && image.ContentType != "image/jpeg")
                 {
-                    ModelState.AddModelError("PosterImageFile", "PosterImageFile is required");
-                    return false;
+                    ModelState.AddModelError("ImageFiles", "PosterImageFile is required");
+                    break;
                 }
                 if (image.Length > 2097152)
                 {
-                    ModelState.AddModelError("PosterImageFile", "PosterImageFile max size is 2MB");
-                    return false;
+                    ModelState.AddModelError("ImageFiles", "PosterImageFile max size is 2MB");
+                    break;
                 }
             }
-
-            return true;
         }
 
         private void CreatePosterImage(Company company)
@@ -224,6 +220,16 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
                 Image = FileManager.Save(_env.WebRootPath, "uploads/companies", company.PosterImageFile)
             };
             _context.CompanyImages.Add(image);
+        }
+
+        private void EditChange(Company newCompany, Company oldCompany)
+        {
+            oldCompany.Name = newCompany.Name;
+            oldCompany.Title = newCompany.Title;
+            oldCompany.Description = newCompany.Description;
+            oldCompany.IsHome = newCompany.IsHome;
+            oldCompany.Website = newCompany.Website;
+            oldCompany.ModifiedDate = DateTime.UtcNow.AddHours(4);
         }
     }
 }

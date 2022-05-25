@@ -8,59 +8,127 @@
 
 <h4>Company</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsHome" /> @Html.DisplayNameFor(model => model.IsHome)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Website" class="control-label"></label>
-                <input asp-for="Website" class="form-control" />
-                <span asp-validation-for="Website" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDelete" /> @Html.DisplayNameFor(model => model.IsDelete)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit</h3>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit">
+                            <div class="row">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Name</label>
+                                        <input asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label asp-for="Title" class="control-label" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Title</label>
+                                        <input asp-for="Title" class="form-control" />
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label asp-for="Website" class="control-label" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Website</label>
+                                        <input asp-for="Website" class="form-control" />
+                                        <span asp-validation-for="Website" class="text-danger"></span>
+                                    </div>
+                                    <input type="hidden" asp-for="Id" />
+                                </div>
+                                <div class="col-lg-3 mb-3 d-flex justify-content-center align-items-end ">
+                                    <div class="form-group form-check">
+                                        <label asp-for="IsHome" class="control-label" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">
+                                            <input class="form-check-input" asp-for="IsHome" /> @Html.DisplayNameFor(model => model.IsHome)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 mb-3">
+                                    <div class="form-group">
+                                        <label asp-for="Description" class="control-label" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Description</label>
+                                        <textarea style="height:100px; max-height:150px" maxlength="500" asp-for="Description" class="form-control"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 mb-3">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="PosterImageFile">PosterFile</label>
+                                            <input class="form-control" asp-for="PosterImageFile">
+                                            <span class="text-danger" asp-validation-for="PosterImageFile"></span>
+                                            <div id="poster-image-box" class="poster-image-box">
+                                                @if (Model.CompanyImages.FirstOrDefault(x => x.PosterStatus == true)?.Image != null)
+                                                {
+                                                    <img style="width:200px; height:180px;" src="~/uploads/companies/@Model.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" />
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="ImageFiles">ImageFiles</label>
+                                            <input class="form-control" multiple asp-for="ImageFiles">
+                                            <span class="text-danger" asp-validation-for="ImageFiles"></span>
+
+                                            @foreach (var image in Model.CompanyImages.Where(x => x.PosterStatus == false))
+                                            {
+
+                                                @if (Model.CompanyImages.FirstOrDefault(x => x.PosterStatus == false) != null)
+
+                                                {
+                                                    <div class="image-box">
+                                                        <input type="hidden" name="CompanyImagesIds[]" value="@image.Id" />
+                                                        <img style="width:200px; height:160px;" src="~/uploads/companies/@image.Image" />
+                                                        <i style=" cursor: pointer; color: #886cc0; font-size: 20px; " class="fa-solid fa-trash-can deleteImage"></i>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="form-group">
+                                            <input type="submit" value="Save" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/manage/js/ProductImage.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+}
