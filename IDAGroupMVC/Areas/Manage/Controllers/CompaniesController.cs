@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using IDAGroupMVC.Models;
 using IDAGroupMVC.Helper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace IDAGroupMVC.Areas.Manage.Controllers
 {
@@ -53,8 +54,9 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             CreatePosterImage(company);
             CreateImage(company);
 
-            _context.Add(company);
-            await _context.SaveChangesAsync();
+            //SaveChange
+            SaveChange(company);
+            SaveContext();
             return RedirectToAction(nameof(Index));
         }
 
@@ -71,41 +73,49 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Company company)
         {
-
             if (!CompanyExists(company.Id)) return RedirectToAction("notfound", "error");
 
-            Company checkCompany = await _context.Companies.Include(x => x.CompanyImages).FirstOrDefaultAsync(x => x.Id == company.Id);
-            ///Required
-            IsRequired(company);
-            if (!ModelState.IsValid) return View();
+            Company companyExist = await _context.Companies.Include(x => x.CompanyImages).FirstOrDefaultAsync(x => x.Id == company.Id);
+            //Required
+            EditIsRequired(company);
+            if (!ModelState.IsValid) return View(companyExist);
 
-            //Check
-            PosterImageCheck(company);
-            ImagesCheck(company);
-            if (!ModelState.IsValid) return View();
+            if (company.PosterImageFile != null)
+            {
+                PosterImageCheck(company);
+                if (!ModelState.IsValid) return View(companyExist);
+                var posterFile = company.PosterImageFile;
+                CompanyImages posterImage = companyExist.CompanyImages.FirstOrDefault(x => x.PosterStatus == true);
 
+                var filename = FileSave(company);
+                FileManager.Delete(_env.WebRootPath, "uploads/companies", posterFile.FileName);
+                posterImage.Image = filename;
+            }
+            if (company.CompanyImagesIds != null)
+            {
+                foreach (var item in companyExist.CompanyImages.Where(x => x.PosterStatus == false && !company.CompanyImagesIds.Contains(x.Id)))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/companies", item.Image);
+                }
+                companyExist.CompanyImages.RemoveAll(x => x.PosterStatus == false && !company.CompanyImagesIds.Contains(x.Id));
 
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        _context.Update(company);
-            //        await _context.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        if (!CompanyExists(company.Id))
-            //        {
-            //            return NotFound();
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //    return RedirectToAction(nameof(Index));
-            //}
-            return View(company);
+            }
+            else
+            {
+                foreach (var item in companyExist.CompanyImages.Where(x => x.PosterStatus == false))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/companies", item.Image);
+                }
+                companyExist.CompanyImages.RemoveAll(x => x.PosterStatus == false);
+            }
+            if (company.ImageFiles != null)
+            {
+                EditImageSave(company, companyExist);
+            }
+            EditChange(company, companyExist);
+            SaveContext();
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: Manage/Companies/Delete/5
@@ -173,6 +183,28 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
 
             }
         }
+        private void EditIsRequired(Company company)
+        {
+            if (company.Name == null)
+            {
+                ModelState.AddModelError("Name", "Name is required");
+            }
+            if (company.Title == null)
+            {
+                ModelState.AddModelError("Title", "Title is required");
+
+            }
+            if (company.Website == null)
+            {
+                ModelState.AddModelError("Website", "Website is required");
+
+            }
+            if (company.Description == null)
+            {
+                ModelState.AddModelError("Description", "Description is required");
+
+            }
+        }
         private void PosterImageCheck(Company company)
         {
             if (company.PosterImageFile.ContentType != "image/png" && company.PosterImageFile.ContentType != "image/jpeg")
@@ -211,6 +243,40 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             };
             _context.CompanyImages.Add(Posterimage);
         }
+        private string FileSave(Company company)
+        {
+            string image = FileManager.Save(_env.WebRootPath, "uploads/companies", company.PosterImageFile);
+            return image;
+        }
+        private void EditImageSave(Company company, Company companyExist)
+        {
+            foreach (var image in company.ImageFiles)
+            {
+                if (image.ContentType != "image/png" && image.ContentType != "image/jpeg")
+                {
+                    continue;
+                }
+                if (image.Length > 2097152)
+                {
+                    continue;
+                }
+                CompanyImages newImage = new CompanyImages
+                {
+                    PosterStatus = false,
+                    Image = FileManager.Save(_env.WebRootPath, "uploads/companies", image),
+
+                };
+                if (companyExist.CompanyImages == null)
+                {
+                    companyExist.CompanyImages = new List<CompanyImages>();
+                }
+                companyExist.CompanyImages.Add(newImage);
+            }
+
+        }
+
+
+
         private void CreateImage(Company company)
         {
             CompanyImages image = new CompanyImages
@@ -231,5 +297,35 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             oldCompany.Website = newCompany.Website;
             oldCompany.ModifiedDate = DateTime.UtcNow.AddHours(4);
         }
+        private void SaveContext()
+        {
+            _context.SaveChanges();
+        }
+        private void SaveChange(Company company)
+        {
+            _context.Add(company);
+        }
+
+
+        //if (ModelState.IsValid)
+        //{
+        //    try
+        //    {
+        //        _context.Update(company);
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!CompanyExists(company.Id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }

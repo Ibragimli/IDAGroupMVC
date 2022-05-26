@@ -25,7 +25,7 @@
                         <h3 class="card-title">Edit</h3>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Edit">
+                        <form asp-action="Edit" method="post" enctype="multipart/form-data">
                             <div class="row">
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -67,7 +67,7 @@
                                         <span asp-validation-for="Description" class="text-danger"></span>
                                     </div>
                                 </div>
-                                <div class="col-lg-9 mb-3">
+                                <div class="col-lg-12 mb-3">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="PosterImageFile">PosterFile</label>
@@ -101,8 +101,10 @@
                                             }
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 mb-3">
+                                    <hr />
+                                    <div class="col-lg-12 mb-3 mt-2 d-flex justify-content-end" >
                                         <div class="form-group">
+                                            <a asp-action="index" asp-controller="companies" class="ms-4  me-2 btn  btn-warning">Back</a>
                                             <input type="submit" value="Save" class="btn btn-primary" />
                                         </div>
                                     </div>
