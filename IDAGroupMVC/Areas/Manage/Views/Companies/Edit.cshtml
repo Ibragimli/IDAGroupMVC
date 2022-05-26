@@ -102,7 +102,7 @@
                                         </div>
                                     </div>
                                     <hr />
-                                    <div class="col-lg-12 mb-3 mt-2 d-flex justify-content-end" >
+                                    <div class="col-lg-12 mb-3 mt-2 d-flex justify-content-end">
                                         <div class="form-group">
                                             <a asp-action="index" asp-controller="companies" class="ms-4  me-2 btn  btn-warning">Back</a>
                                             <input type="submit" value="Save" class="btn btn-primary" />
@@ -123,8 +123,9 @@
 @section Scripts{
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="~/manage/js/ProductImage.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+    <script src="~/manage/js/CompanyImage.js"></script>
+
     <script>
         ClassicEditor
             .create(document.querySelector('#editor'))

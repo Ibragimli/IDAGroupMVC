@@ -84,30 +84,10 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             {
                 PosterImageCheck(company);
                 if (!ModelState.IsValid) return View(companyExist);
-                var posterFile = company.PosterImageFile;
-                CompanyImages posterImage = companyExist.CompanyImages.FirstOrDefault(x => x.PosterStatus == true);
-
-                var filename = FileSave(company);
-                FileManager.Delete(_env.WebRootPath, "uploads/companies", posterFile.FileName);
-                posterImage.Image = filename;
+                EditPosterImageSave(company, companyExist);
             }
-            if (company.CompanyImagesIds != null)
-            {
-                foreach (var item in companyExist.CompanyImages.Where(x => x.PosterStatus == false && !company.CompanyImagesIds.Contains(x.Id)))
-                {
-                    FileManager.Delete(_env.WebRootPath, "uploads/companies", item.Image);
-                }
-                companyExist.CompanyImages.RemoveAll(x => x.PosterStatus == false && !company.CompanyImagesIds.Contains(x.Id));
-
-            }
-            else
-            {
-                foreach (var item in companyExist.CompanyImages.Where(x => x.PosterStatus == false))
-                {
-                    FileManager.Delete(_env.WebRootPath, "uploads/companies", item.Image);
-                }
-                companyExist.CompanyImages.RemoveAll(x => x.PosterStatus == false);
-            }
+            //ImagesDelete
+            ImagesDelete(company, companyExist);
             if (company.ImageFiles != null)
             {
                 EditImageSave(company, companyExist);
@@ -119,33 +99,23 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         }
 
         // GET: Manage/Companies/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var company = _context.Companies.Include(x => x.CompanyImages).FirstOrDefault(x => x.Id == id);
+            if (company == null) return RedirectToAction("notfound", "error");
+            //var PosterImage = company.CompanyImages.FirstOrDefault(x => x.PosterStatus == true);
+            //FileManager.Delete(_env.WebRootPath, "uploads/companies", PosterImage.Image);
 
-            var company = await _context.Companies
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (company == null)
-            {
-                return NotFound();
-            }
-
-            return View(company);
-        }
-
-        // POST: Manage/Companies/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var company = await _context.Companies.FindAsync(id);
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
+            //var Images = company.CompanyImages.FirstOrDefault(x => x.PosterStatus == false);
+            //foreach (var item in company.CompanyImages.Where(x => x.PosterStatus == false))
+            //{
+            //    DeleteFile(item);
+            //}
+            //_context.Companies.Remove(company);
             return RedirectToAction(nameof(Index));
         }
+
+
         private bool CompanyExists(int id)
         {
             return _context.Companies.Any(e => e.Id == id);
@@ -239,7 +209,8 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             {
                 PosterStatus = true,
                 Companys = company,
-                Image = FileManager.Save(_env.WebRootPath, "uploads/companies", company.PosterImageFile)
+
+                Image = FileSave(company),
             };
             _context.CompanyImages.Add(Posterimage);
         }
@@ -263,7 +234,7 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
                 CompanyImages newImage = new CompanyImages
                 {
                     PosterStatus = false,
-                    Image = FileManager.Save(_env.WebRootPath, "uploads/companies", image),
+                    Image = FileSave(company),
 
                 };
                 if (companyExist.CompanyImages == null)
@@ -275,15 +246,13 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
 
         }
 
-
-
         private void CreateImage(Company company)
         {
             CompanyImages image = new CompanyImages
             {
                 PosterStatus = false,
                 Companys = company,
-                Image = FileManager.Save(_env.WebRootPath, "uploads/companies", company.PosterImageFile)
+                Image = FileSave(company),
             };
             _context.CompanyImages.Add(image);
         }
@@ -305,27 +274,38 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         {
             _context.Add(company);
         }
+        private void DeleteFile(CompanyImages image)
+        {
+            FileManager.Delete(_env.WebRootPath, "uploads/companies", image.Image);
+        }
+        private void ImagesDelete(Company company, Company companyExist)
+        {
+            if (company.CompanyImagesIds != null)
+            {
+                foreach (var item in companyExist.CompanyImages.Where(x => x.PosterStatus == false && !company.CompanyImagesIds.Contains(x.Id)))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/companies", item.Image);
+                }
+                companyExist.CompanyImages.RemoveAll(x => x.PosterStatus == false && !company.CompanyImagesIds.Contains(x.Id));
 
+            }
+            else
+            {
+                foreach (var item in companyExist.CompanyImages.Where(x => x.PosterStatus == false))
+                {
+                    DeleteFile(item);
+                }
+                companyExist.CompanyImages.RemoveAll(x => x.PosterStatus == false);
+            }
+        }
+        private void EditPosterImageSave(Company company, Company companyExist)
+        {
+            var posterFile = company.PosterImageFile;
+            CompanyImages posterImage = companyExist.CompanyImages.FirstOrDefault(x => x.PosterStatus == true);
 
-        //if (ModelState.IsValid)
-        //{
-        //    try
-        //    {
-        //        _context.Update(company);
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!CompanyExists(company.Id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return RedirectToAction(nameof(Index));
-        //}
+            var filename = FileSave(company);
+            FileManager.Delete(_env.WebRootPath, "uploads/companies", posterFile.FileName);
+            posterImage.Image = filename;
+        }
     }
 }

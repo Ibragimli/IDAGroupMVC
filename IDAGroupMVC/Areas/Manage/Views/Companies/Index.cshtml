@@ -54,7 +54,7 @@
                                             <td>@(companies.Description.Length<=70?(companies.Description):(companies.Description.Substring(0, 70))) </td>
                                             <td class="text-center">
                                                 <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="companies" asp-route-id="@companies.Id">Edit</a>
-                                                <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="companies" asp-route-id="@companies.Id">Delete</a>
+                                                <a class="btn btn-danger delete-btn    mb-1" asp-action="delete" asp-controller="companies" asp-route-id="@companies.Id">Delete</a>
                                             </td>
                                         </tr>
 
@@ -82,9 +82,9 @@
 </div>
 
 @section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
     <script src="~/manage/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/manage/js/plugins-init/datatables.init.js"></script>
     <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
