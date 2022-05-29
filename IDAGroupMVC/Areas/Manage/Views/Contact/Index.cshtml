@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model List<Contact>
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="displ card-header">
+                        <h4 class="card-title">
+                            Contact Panel
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead style="background-color: mediumseagreen;">
+                                    <tr>
+                                        <th>CreatedDate</th>
+                                        <th>Fullname</th>
+                                        <th>Email</th>
+                                        <th>PhoneNumber</th>
+                                        <th>Subject</th>
+                                        <th>Action</th>
+                                        <th>Text</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var contact in Model)
+                                    {
+
+                                        <tr style="background-color:@(contact.IsRead == true?"whitesmoke ":"darkturquoise ") !important;">
+                                            <td>@contact.CreatedDate</td>
+                                            <td>@contact.Fullname</td>
+                                            <td>
+                                                <a href="mailto: @contact.Email">
+                                                    @contact.Email
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="tel: @contact.PhoneNumber">
+                                                    @contact.PhoneNumber
+                                                </a>
+                                            </td>
+                                            <td>@contact.Subject</td>
+                                            <td class="text-center">
+                                                <a class="btn btn-warning mb-1" asp-action="detail" asp-controller="contact" asp-route-id="@contact.Id">Detail</a>
+                                            </td>
+                                            <td>@(contact.Text.Length<=30?(contact.Text):(contact.Text.Substring(0,30)+"...."))</td>
+                                            
+                                        </tr>
+
+                                    }
+                                </tbody>
+                                <tfoot style="background-color: mediumseagreen;">
+                                    <tr>
+                                        <th>CreatedDate</th>
+                                        <th>Fullname</th>
+                                        <th>Email</th>
+                                        <th>PhoneNumber</th>
+                                        <th>Subject</th>
+                                        <th>Action</th>
+                                        <th>Text</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    <script src="~/manage/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/manage/js/plugins-init/datatables.init.js"></script>
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

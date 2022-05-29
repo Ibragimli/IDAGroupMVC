@@ -1,3 +1,4 @@
+using IDAGroupMVC.Areas.Manage;
 using IDAGroupMVC.Models;
 using IDAGroupMVC.Services;
 using Microsoft.AspNetCore.Builder;
@@ -39,7 +40,7 @@ namespace IDAGroupMVC
                 opt.User.RequireUniqueEmail = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<IEmailService, EmailService>();
-            services.AddScoped<LayoutService>();
+            services.AddScoped<Services.LayoutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

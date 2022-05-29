@@ -20,5 +20,13 @@ namespace IDAGroupMVC.Services
         {
             return await _context.Settings.ToListAsync();
         }
+        public async Task<List<Contact>> GetContactsAsync()
+        {
+            return await _context.Contacts.Where(x => x.IsRead == false).Take(6).ToListAsync();
+        }
+        public async Task<List<Contact>> GetContactsCountAsync()
+        {
+            return await _context.Contacts.Where(x => x.IsRead == false).ToListAsync();
+        }
     }
 }

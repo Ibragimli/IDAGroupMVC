@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+}
+@model Contact
+<h1>Detail</h1>
+
+
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="displ card-header">
+                        <h4 class="card-title">
+                            Contact Panel
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <span style="font-weight: 700;font-size: 18px;">
+                                    Fullname:
+                                </span>
+                                <p style="display: inline-block;font-size: 18px;">@Model.Fullname</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <span style="font-weight: 700;font-size: 18px;">
+                                    Email:
+                                </span>
+                                <a style="font-size: 18px;" href="mailto: @Model.Email">
+
+                                    @Model.Email
+                                </a>
+                            </div>
+                            <div class="col-lg-4">
+                                <span style="font-weight: 700;font-size: 18px;">
+                                    PhoneNumber:
+                                </span>
+                                <a style="font-size: 18px;" href="mailto: @Model.PhoneNumber">
+                                    @Model.PhoneNumber
+                                </a>
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-center">
+                                <span style="font-weight: 700;font-size: 18px;">
+                                    Subject:
+                                </span>
+                                <p style="display: inline-block;font-size: 18px;">@Model.Subject</p>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-center">
+                                <span style="font-weight: 700;font-size: 18px;">
+                                    CreatedDate:
+                                </span>
+                                <p style="display: inline-block;font-size: 18px;">@Model.CreatedDate</p>
+                            </div>
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <span style="font-weight: 700;font-size: 18px;">
+                                    Text:
+                                </span>
+                                <br />
+                                <p style="font-size: 18px;">@Model.Text</p>
+                            </div>
+
+
+                            <div class="col-lg-12 d-flex justify-content-end">
+                                <a asp-action="index" asp-controller="contact" class="ms-4  me-2 btn  btn-warning">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
