@@ -10,7 +10,7 @@
                 <div class="col-lg-6 infoLeft">
                     <div class="infoTitle">
                         <h1>Alfons Haar</h1>
-                        <img src="~/Images/products/@Model.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image" alt="">
+                        <img src="~/uploads/companies/@Model.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image" alt="">
                     </div>
                     <div class="infoText">
                         <p>
@@ -65,7 +65,7 @@
                         @foreach (var item in Model.CompanyImages.Where(x => x.PosterStatus == false))
                         {
                             <div class="item">
-                                <img src="~/Images/products/@item.Image" alt="">
+                                <img src="~/uploads/companies/@item.Image" alt="">
                             </div>
                         }
 

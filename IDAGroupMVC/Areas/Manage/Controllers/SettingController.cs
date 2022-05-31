@@ -1,4 +1,5 @@
 ﻿using IDAGroupMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,8 +10,7 @@ using System.Threading.Tasks;
 namespace IDAGroupMVC.Areas.Manage.Controllers
 {
     [Area("Manage")]
-    //[Authorize(Roles = "SuperAdmin , Admin")]
-
+    [Authorize(Roles = "SuperAdmin , Admin")]
     public class SettingController : Controller
     {
         private readonly DataContext _context;

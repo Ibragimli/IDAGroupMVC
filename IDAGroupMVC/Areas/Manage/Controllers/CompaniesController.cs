@@ -9,11 +9,12 @@ using IDAGroupMVC.Models;
 using IDAGroupMVC.Helper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IDAGroupMVC.Areas.Manage.Controllers
 {
     [Area("Manage")]
-    //[Authorize(Roles = "SuperAdmin , Admin")]
+    [Authorize(Roles = "SuperAdmin , Admin")]
     public class CompaniesController : Controller
     {
         private readonly DataContext _context;

@@ -15,7 +15,7 @@
                         <div class="productBox">
                             <div class="prdBoxImage">
                                 <a asp-action="detail" asp-controller="company" asp-route-id="@prd.Id">
-                                    <img src="~/Images/products/@prd.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image"
+                                    <img src="~/uploads/companies/@prd.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image"
                                          alt="">
                                 </a>
                             </div>
@@ -47,7 +47,7 @@
                         @for (int i = 1; i <= Model.PagenatedCompanys.TotalPages; i++)
                         {
                             <li class="page-item @(Model.PagenatedCompanys.PageIndex==i?"active":"")" aria-current="page">
-                                <a asp-action="products" asp-controller="company" asp-route-page="@i" class="page-link" style="padding: 12px 17px;" >@i</a>
+                                <a asp-action="products" asp-controller="company" asp-route-page="@i" class="page-link" style="padding: 12px 17px;">@i</a>
                             </li>
                         }
 

@@ -13,8 +13,8 @@
                         @foreach (var item in Model.CompanySlider)
                         {
                             <div class="item">
-                                <a href="#">
-                                    <img src="~/Images/slidersHome/@item.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image"
+                                <a asp-action="detail" asp-controller="company" asp-route-id="@item.Id">
+                                    <img src="~/uploads/companies/@item.CompanyImages.FirstOrDefault(x=>x.PosterStatus==true).Image"
                                          alt="">
                                 </a>
                             </div>
