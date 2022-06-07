@@ -1,4 +1,5 @@
-﻿using IDAGroupMVC.Models;
+﻿using IDAGroupMVC.Helper;
+using IDAGroupMVC.Models;
 using IDAGroupMVC.ViewModels.Contacts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,6 +29,7 @@ namespace IDAGroupMVC.Controllers
                 Setting = _context.Settings.Where(x => x.IsDelete == false).ToList(),
                 Contact = new Contact(),
             };
+            ClickDateCounter.ClickCounter(_context, "Contact",false);
             return View(contactVM);
         }
         [HttpPost]

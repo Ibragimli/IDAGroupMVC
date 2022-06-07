@@ -1,4 +1,5 @@
-﻿using IDAGroupMVC.Models;
+﻿using IDAGroupMVC.Helper;
+using IDAGroupMVC.Models;
 using IDAGroupMVC.ViewModels.About;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,7 +23,10 @@ namespace IDAGroupMVC.Controllers
             {
                 Settings = _context.Settings.Where(x => x.IsDelete == false).ToList(),
             };
+            ClickDateCounter.ClickCounter(_context, "About",false);
+
             return View(aboutVM);
         }
+
     }
 }

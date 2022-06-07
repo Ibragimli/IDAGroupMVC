@@ -17,5 +17,7 @@ namespace IDAGroupMVC.Models
         public DbSet<CompanyImages> CompanyImages { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<ViewCount> ViewCounts { get; set; }
+        public DbSet<ClickDate> ClickDates { get; set; }
     }
 }

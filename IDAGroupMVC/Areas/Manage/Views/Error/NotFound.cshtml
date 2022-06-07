@@ -1,4 +1,4 @@
-﻿@{
+﻿@{ 
     Layout = null;
 }
 <!DOCTYPE html>
@@ -36,12 +36,21 @@
                         <h4><i class="fa fa-exclamation-triangle text-warning"></i> The page you were looking for is not found!</h4>
                         <p>You may have mistyped the address or the page may have moved.</p>
                         <div>
-                            <a class="btn btn-primary" asp-action="index" asp-controller="home">Back to Home</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="btn btn-primary" asp-action="index" asp-controller="dashboard">Back to Home</a>
+                            }
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a class="btn btn-primary" asp-action="login" asp-controller="account">Back to Home</a>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 </body>
 </html>

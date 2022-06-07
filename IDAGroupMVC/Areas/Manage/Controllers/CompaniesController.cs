@@ -44,6 +44,11 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         {
             ///Required
             IsRequired(company);
+            if (_context.Companies.Any(x => x.Name == company.Name))
+            {
+                ModelState.AddModelError("Name", "Name is already!");
+                return View();
+            }
             if (!ModelState.IsValid) return View();
 
             //Check
@@ -55,6 +60,13 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             CreatePosterImage(company);
             CreateImage(company);
 
+
+            ViewCount count = new ViewCount
+            {
+                ClickName = company.Name,
+                Count = 0,
+            };
+            _context.ViewCounts.Add(count);
             //SaveChange
             SaveChange(company);
             SaveContext();
@@ -75,7 +87,11 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         public async Task<IActionResult> Edit(Company company)
         {
             if (!CompanyExists(company.Id)) return RedirectToAction("notfound", "error");
-
+            if (_context.Companies.Any(x => x.Name == company.Name))
+            {
+                ModelState.AddModelError("Name", "Name is already!");
+                return View();
+            }
             Company companyExist = await _context.Companies.Include(x => x.CompanyImages).FirstOrDefaultAsync(x => x.Id == company.Id);
             //Required
             EditIsRequired(company);
@@ -93,7 +109,8 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             {
                 EditImageSave(company, companyExist);
             }
-            EditChange(company, companyExist);
+            var viewCount = await _context.ViewCounts.FirstOrDefaultAsync(x => x.ClickName == companyExist.Name);
+            EditChange(company, companyExist, viewCount);
             SaveContext();
             return RedirectToAction(nameof(Index));
 
@@ -258,14 +275,16 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             _context.CompanyImages.Add(image);
         }
 
-        private void EditChange(Company newCompany, Company oldCompany)
+        private void EditChange(Company newCompany, Company oldCompany, ViewCount count)
         {
+            count.ClickName = newCompany.Name;
             oldCompany.Name = newCompany.Name;
             oldCompany.Title = newCompany.Title;
             oldCompany.Description = newCompany.Description;
             oldCompany.IsHome = newCompany.IsHome;
             oldCompany.Website = newCompany.Website;
             oldCompany.ModifiedDate = DateTime.UtcNow.AddHours(4);
+
         }
         private void SaveContext()
         {

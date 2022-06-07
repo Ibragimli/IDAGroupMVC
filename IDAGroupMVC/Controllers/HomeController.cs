@@ -1,4 +1,5 @@
-﻿using IDAGroupMVC.Models;
+﻿using IDAGroupMVC.Helper;
+using IDAGroupMVC.Models;
 using IDAGroupMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,8 +25,9 @@ namespace IDAGroupMVC.Controllers
             HomeViewModel homeVM = new HomeViewModel
             {
                 CompanySlider = _context.Companies.Include(x=>x.CompanyImages).Where(x=>x.IsHome==true).ToList(),
-
             };
+            ClickDateCounter.ClickCounter(_context, "Home",false);
+
             return View(homeVM);
         }
 

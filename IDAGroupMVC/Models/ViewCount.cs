@@ -8,6 +8,10 @@ namespace IDAGroupMVC.Models
     public class ViewCount : BaseEntity
     {
         public int Count { get; set; }
-        public DateTime ClickDate { get; set; }
+        public string ClickName { get; set; }
+        public bool? IsCompany { get; set; }
+        public List<Company> Companies { get; set; }
+        public List<ClickDate> ClickDates { get; set; }
+
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IDAGroupMVC.Models
 {
-    public class Company:BaseEntity
+    public class Company : BaseEntity
     {
         [StringLength(maximumLength: 50, MinimumLength = 2)]
         public string Name { get; set; }
@@ -18,6 +18,8 @@ namespace IDAGroupMVC.Models
         [StringLength(maximumLength: 500)]
         public string Description { get; set; }
         [StringLength(maximumLength: 150, MinimumLength = 10)]
+        public int? ViewCountId { get; set; }
+        public ViewCount ViewCount { get; set; }
         public string Website { get; set; }
         [NotMapped]
         public List<IFormFile> ImageFiles { get; set; }
@@ -26,5 +28,6 @@ namespace IDAGroupMVC.Models
         [NotMapped]
         public List<int> CompanyImagesIds { get; set; }
         public List<CompanyImages> CompanyImages { get; set; }
+
     }
 }
