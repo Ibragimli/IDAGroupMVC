@@ -2,7 +2,7 @@
     ViewData["Title"] = "Index";
 }
 
-@model List<Contact>
+@model ContactPanelViewModel
 
 <div class="content-body" style="min-height: 740px;">
     <div class="container-fluid">
@@ -10,10 +10,52 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="displ card-header">
-                        <h4 class="card-title">
-                            Contact Panel
-                        </h4>
+                    <div style="display:block" class="displ card-header">
+                        <form asp-action="index">
+                            <div class="row">
+
+                                <div class="col"><h4 class="card-title">Contact Panel</h4></div>
+
+                                <div class="col">
+                                    <select asp-for="Month" id="month" class="form-select" aria-label="Default select example">
+                                        <option selected>All</option>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+
+                                </div>
+                                <div class="col">
+                                    <select asp-for="Year" class="form-select" aria-label="Default select example">
+                                        <option selected>All</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2030">2030</option>
+
+                                    </select>
+
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-primary" type="submit">Filter</button>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -31,7 +73,7 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach (var contact in Model)
+                                    @foreach (var contact in Model.Contacts)
                                     {
 
                                         <tr style="background-color:@(contact.IsRead == true?"whitesmoke ":"darkturquoise ") !important;">
@@ -52,7 +94,7 @@
                                                 <a class="btn btn-warning mb-1" asp-action="detail" asp-controller="contact" asp-route-id="@contact.Id">Detail</a>
                                             </td>
                                             <td>@(contact.Text.Length<=30?(contact.Text):(contact.Text.Substring(0,30)+"...."))</td>
-                                            
+
                                         </tr>
 
                                     }

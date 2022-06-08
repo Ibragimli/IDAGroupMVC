@@ -87,12 +87,13 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         public async Task<IActionResult> Edit(Company company)
         {
             if (!CompanyExists(company.Id)) return RedirectToAction("notfound", "error");
-            if (_context.Companies.Any(x => x.Name == company.Name))
+
+            Company companyExist = await _context.Companies.Include(x => x.CompanyImages).FirstOrDefaultAsync(x => x.Id == company.Id);
+            if (companyExist.Name != company.Name && _context.Companies.Any(x=>x.Name == company.Name))
             {
                 ModelState.AddModelError("Name", "Name is already!");
-                return View();
+                return View(companyExist);
             }
-            Company companyExist = await _context.Companies.Include(x => x.CompanyImages).FirstOrDefaultAsync(x => x.Id == company.Id);
             //Required
             EditIsRequired(company);
             if (!ModelState.IsValid) return View(companyExist);
