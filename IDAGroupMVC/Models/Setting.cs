@@ -13,9 +13,8 @@ namespace IDAGroupMVC.Models
         [StringLength(maximumLength: 25)]
         public string Key { get; set; }
         [StringLength(maximumLength: 500)]
-        public string? Value { get; set; }
-        [StringLength(maximumLength: 100)]
-        public string? ValueImage { get; set; }
+        public string Value { get; set; }
+
         [NotMapped]
         public IFormFile KeyImageFile { get; set; }
     }

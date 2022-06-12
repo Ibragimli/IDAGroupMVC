@@ -32,16 +32,16 @@
                                 <div class="col-lg-9 mb-3">
                                     <div class="form-group">
                                         <label asp-for="Value" class="control-label" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Value</label>
-                                        @if (Model.ValueImage != null)
+                                        @if (Model.Value != null && Model.Key.EndsWith("Image"))
                                         {
                                             <input asp-for="KeyImageFile" />
-                                            @if (Model.ValueImage != null)
+                                            @if (Model.Value != null && Model.Key.EndsWith("Image"))
                                             {
-                                                <img style="width:200px; height:180px;" src="~/uploads/settings/@Model.ValueImage" />
+                                                <img style="width:200px; height:180px;" src="~/uploads/settings/@Model.Value" />
                                             }
                                             <span asp-validation-for="KeyImageFile" class="text-danger"></span>
                                         }
-                                        @if (Model.Value != null)
+                                        @if (Model.Value != null && !Model.Key.EndsWith("Image"))
                                         {
                                             <textarea style="height:100px; max-height:200px" maxlength="500" asp-for="Value" class="form-control"></textarea>
                                             <span asp-validation-for="Value" class="text-danger"></span>

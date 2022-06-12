@@ -43,7 +43,7 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Setting setting)
-            {
+        {
             if (!SettingExists(setting.Id)) return RedirectToAction("notfound", "error");
 
             Setting settingExist = await _context.Settings.FirstOrDefaultAsync(x => x.Id == setting.Id);
@@ -115,8 +115,13 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             var posterFile = setting.KeyImageFile;
 
             var filename = FileSave(setting);
-            FileManager.Delete(_env.WebRootPath, "uploads/settings", posterFile.FileName);
-            settingExist.ValueImage = filename;
+            DeleteFile(settingExist);
+            settingExist.Value = filename;
+            settingExist.ModifiedDate = DateTime.UtcNow.AddHours(4);
+        }
+        private void DeleteFile(Setting image)
+        {
+            FileManager.Delete(_env.WebRootPath, "uploads/settings", image.Value);
         }
 
 
