@@ -26,26 +26,26 @@
 </head>
 
 <body>
-    <header style="background-image: url( @Url.Content("~/uploads/settings/")@settings.FirstOrDefault(x => x.Key == "BackgroundImage").Value); background-repeat: no-repeat;     background-size: cover; background-position: center;   height: 55vh; ">
+    <header style="background-image: url( @Url.Content("~/uploads/settings/")@settings.FirstOrDefault(x => x.Key == "HeadBackgroundImage").Value); background-repeat: no-repeat;     background-size: cover; background-position: center;   height: 55vh; ">
         <section id="headers">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-sm-4 headLogo">
                         <a class="navbar-brand" asp-action="index" asp-controller="home">
-                            <img src="~/Images/logo/@settings.FirstOrDefault(x => x.Key == "LogoImage").Value" alt="" width="30" height="24"
+                            <img src="~/uploads/settings/header/@settings.FirstOrDefault(x => x.Key == "HeadLogoImage").Value" alt="" width="30" height="24"
                                  class="d-inline-block align-text-top">
 
-                            @settings.FirstOrDefault(x => x.Key == "LogoText").Value
+                            @settings.FirstOrDefault(x => x.Key == "HeadLogoText").Value
                         </a>
                     </div>
 
 
                     <div class="col-lg-8 col-sm-8 headNav">
                         <ul class="nav nav-pills ms-4">
-                            <li class="nav-item"><a asp-action="index" asp-controller="home" class="nav-link " aria-current="page">  @settings.FirstOrDefault(x => x.Key == "Nav1").Value</a></li>
-                            <li class="nav-item"><a asp-action="products" asp-controller="company" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "Nav2").Value</a></li>
-                            <li class="nav-item"><a asp-action="about" asp-controller="about" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "Nav3").Value</a></li>
-                            <li class="nav-item"><a asp-action="contactUs" asp-controller="contact" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "Nav4").Value</a></li>
+                            <li class="nav-item"><a asp-action="index" asp-controller="home" class="nav-link " aria-current="page">  @settings.FirstOrDefault(x => x.Key == "HeadNav1").Value</a></li>
+                            <li class="nav-item"><a asp-action="products" asp-controller="company" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav2").Value</a></li>
+                            <li class="nav-item"><a asp-action="about" asp-controller="about" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav3").Value</a></li>
+                            <li class="nav-item"><a asp-action="contactUs" asp-controller="contact" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav4").Value</a></li>
                         </ul>
                     </div>
                 </div>
@@ -68,12 +68,12 @@
                     <div class="footLeft col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            
-                            @settings.FirstOrDefault(x => x.Key == "LeftTitle").Value
+
+                            @settings.FirstOrDefault(x => x.Key == "LeftTitleFoot").Value
                         </h6>
                         <p>
-                            @settings.FirstOrDefault(x => x.Key == "LeftText").Value
-                          
+                            @settings.FirstOrDefault(x => x.Key == "LeftTextFoot").Value
+
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -81,20 +81,20 @@
                     <div class="footMiddle col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            
-                            @settings.FirstOrDefault(x => x.Key == "MiddleTitle").Value
+
+                            @settings.FirstOrDefault(x => x.Key == "MiddleTitleFoot").Value
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle1").Value</a>
+                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle1Foot").Value</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle2").Value</a>
+                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle2Foot").Value</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle3").Value</a>
+                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle3Foot").Value</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle4").Value</a>
+                            <a href="#!" class="text-reset">  @settings.FirstOrDefault(x => x.Key == "Middle4Foot").Value</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -102,18 +102,18 @@
                     <div class="footRight col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            @settings.FirstOrDefault(x => x.Key == "RightTitle").Value
+                            @settings.FirstOrDefault(x => x.Key == "RightTitleFoot").Value
                         </h6>
                         <p>
                             <i class="fas fa-home me-3"></i>
-                            @settings.FirstOrDefault(x => x.Key == "Right1").Value
+                            @settings.FirstOrDefault(x => x.Key == "Right1Foot").Value
                         </p>
                         <p>
                             <i class="fas fa-envelope me-3"></i>
-                            @settings.FirstOrDefault(x => x.Key == "Right2").Value
+                            @settings.FirstOrDefault(x => x.Key == "Right2Foot").Value
                         </p>
-                        <p><i class="fas fa-phone me-3"></i>  @settings.FirstOrDefault(x => x.Key == "Right3").Value </p>
-                        <p><i class="fas fa-print me-3"></i>  @settings.FirstOrDefault(x => x.Key == "Right4").Value </p>
+                        <p><i class="fas fa-phone me-3"></i>  @settings.FirstOrDefault(x => x.Key == "Right3Foot").Value </p>
+                        <p><i class="fas fa-print me-3"></i>  @settings.FirstOrDefault(x => x.Key == "Right4Foot").Value </p>
                     </div>
                     <!-- Grid column -->
                 </div>

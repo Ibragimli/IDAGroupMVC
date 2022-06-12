@@ -14,8 +14,6 @@ namespace IDAGroupMVC.Helper
         {
             return context.Settings.Any(e => e.Id == id);
         }
-
-
         public static void EditChange(Setting setting, Setting settingExist)
         {
             settingExist.Value = setting.Value;
@@ -35,8 +33,6 @@ namespace IDAGroupMVC.Helper
             string image = FileManager.Save(_env.WebRootPath, $"uploads/settings/{folder}", setting.KeyImageFile);
             return image;
         }
-
-
         public static void EditPosterImageSave(Setting setting, Setting settingExist, IWebHostEnvironment _env, string folder)
         {
             var posterFile = setting.KeyImageFile;
