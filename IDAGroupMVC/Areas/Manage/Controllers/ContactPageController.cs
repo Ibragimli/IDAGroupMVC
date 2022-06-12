@@ -34,7 +34,7 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         }
         public async Task<IActionResult> Edit(int id)
         {
-            if (!SettingExists(id)) return RedirectToAction("notfound", "error");
+            if (!SettingManager.SettingExists(id, _context)) return RedirectToAction("notfound", "error");
             var setting = await _context.Settings.FirstOrDefaultAsync(x => x.Id == id);
             return View(setting);
         }
@@ -44,7 +44,7 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Setting setting)
         {
-            if (!SettingExists(setting.Id)) return RedirectToAction("notfound", "error");
+            if (!SettingManager.SettingExists(setting.Id, _context)) return RedirectToAction("notfound", "error");
 
             Setting settingExist = await _context.Settings.FirstOrDefaultAsync(x => x.Id == setting.Id);
 
@@ -56,74 +56,24 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
             {
                 PosterImageCheck(setting);
                 if (!ModelState.IsValid) return View(settingExist);
-                EditPosterImageSave(setting, settingExist);
+                SettingManager.EditPosterImageSave(setting, settingExist, _env,"contact");
             }
-            if (setting.Value != null) EditChange(setting, settingExist);
+            if (setting.Value != null) SettingManager.EditChange(setting, settingExist);
 
-            SaveChange();
+            SettingManager.SaveChange(_context);
             return RedirectToAction(nameof(Index));
 
         }
 
-
-
-        private bool SettingExists(int id)
-        {
-            return _context.Settings.Any(e => e.Id == id);
-        }
-
         private void IsRequired(Setting setting)
         {
-            if (setting.Value == null && setting.KeyImageFile == null)
-            {
-                ModelState.AddModelError("", "Value is required");
-            }
-        }
-        private void EditChange(Setting setting, Setting settingExist)
-        {
-            settingExist.Value = setting.Value;
-            settingExist.ModifiedDate = DateTime.UtcNow.AddHours(4);
-        }
-        private void SaveChange()
-        {
-            _context.SaveChanges();
-        }
-        private void AddContext(Setting setting)
-        {
-            _context.Add(setting);
-
-        }
-        private string FileSave(Setting setting)
-        {
-            string image = FileManager.Save(_env.WebRootPath, "uploads/settings", setting.KeyImageFile);
-            return image;
+            if (setting.Value == null && setting.KeyImageFile == null) ModelState.AddModelError("KeyImageFile", "KeyImageFile is required");
         }
 
         private void PosterImageCheck(Setting setting)
         {
-            if (setting.KeyImageFile.ContentType != "image/png" && setting.KeyImageFile.ContentType != "image/jpeg")
-            {
-                ModelState.AddModelError("PosterImageFile", "Image type only (png and jpeg");
-            }
-            if (setting.KeyImageFile.Length > 2097152)
-            {
-                ModelState.AddModelError("PosterImageFile", "PosterImageFile max size is 2MB");
-            }
+            if (setting.KeyImageFile.ContentType != "image/png" && setting.KeyImageFile.ContentType != "image/jpeg") ModelState.AddModelError("KeyImageFile", "Image type only (png and jpeg");
+            if (setting.KeyImageFile.Length > 2097152) ModelState.AddModelError("KeyImageFile", "Image max size is 2MB");
         }
-        private void EditPosterImageSave(Setting setting, Setting settingExist)
-        {
-            var posterFile = setting.KeyImageFile;
-
-            var filename = FileSave(setting);
-            DeleteFile(settingExist);
-            settingExist.Value = filename;
-            settingExist.ModifiedDate = DateTime.UtcNow.AddHours(4);
-        }
-        private void DeleteFile(Setting image)
-        {
-            FileManager.Delete(_env.WebRootPath, "uploads/settings", image.Value);
-        }
-
-
     }
 }

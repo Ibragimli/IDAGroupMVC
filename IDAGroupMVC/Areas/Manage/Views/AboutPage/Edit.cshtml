@@ -37,7 +37,7 @@
                                             <input asp-for="KeyImageFile" />
                                             @if (Model.Value != null && Model.Key.EndsWith("Image"))
                                             {
-                                                <img style="width:200px; height:180px;" src="~/uploads/settings/contact/@Model.Value" />
+                                                <img style="width:200px; height:180px;" src="~/uploads/settings/about/@Model.Value" />
                                             }
                                             <span asp-validation-for="KeyImageFile" class="text-danger"></span>
                                         }
@@ -54,7 +54,7 @@
                                 <hr />
                                 <div class="col-lg-12 mb-3 mt-2 d-flex justify-content-end">
                                     <div class="form-group">
-                                        <a asp-action="index" asp-controller="contactpage" class="ms-4  me-2 btn  btn-warning">Back</a>
+                                        <a asp-action="index" asp-controller="aboutpage" class="ms-4  me-2 btn  btn-warning">Back</a>
                                         <input type="submit" value="Save" class="btn btn-primary" />
                                     </div>
                                 </div>

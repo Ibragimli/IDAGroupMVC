@@ -247,11 +247,12 @@ namespace IDAGroupMVC.Areas.Manage.Controllers
                 {
                     continue;
                 }
+              
                 CompanyImages newImage = new CompanyImages
                 {
                     PosterStatus = false,
-                    Image = FileSave(company),
-
+                    Image = FileManager.Save(_env.WebRootPath, "uploads/companies", image),
+                    
                 };
                 if (companyExist.CompanyImages == null)
                 {

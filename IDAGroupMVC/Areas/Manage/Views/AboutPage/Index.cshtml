@@ -35,7 +35,7 @@
                                             <td>
                                                 @if (setting.Value != null && setting.Key.EndsWith("Image"))
                                                 {
-                                                    <img src="~/uploads/settings/contact/@setting.Value" width="100" height="100" />
+                                                    <img src="~/uploads/settings/about/@setting.Value" width="100" height="100" />
                                                 }
                                                 else
                                                 {
@@ -44,7 +44,7 @@
                                             </td>
                                             <td>@setting.ModifiedDate</td>
                                             <td class="text-center">
-                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="contactpage" asp-route-id="@setting.Id">Edit</a>
+                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="aboutpage" asp-route-id="@setting.Id">Edit</a>
                                             </td>
                                         </tr>
 

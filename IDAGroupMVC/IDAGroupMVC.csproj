@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Areas\Manage\Controllers\AboutPageController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.25" />
@@ -18,7 +22,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\uploads\companies\" />
-    <Folder Include="wwwroot\uploads\settings\Contact\" />
+    <Folder Include="wwwroot\uploads\settings\about\" />
   </ItemGroup>
 
 </Project>

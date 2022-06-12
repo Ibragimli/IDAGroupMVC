@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 contactImage">
-                    <img src="~/Images/@Model.Setting.Where(x=>x.IsDelete==false).FirstOrDefault(x=>x.Key=="ContactImage").Value" alt="">
+                    <img src="~/uploads/settings/contact/@Model.Setting.Where(x=>x.IsDelete==false).FirstOrDefault(x=>x.Key=="ContactImage").Value" alt="">
                 </div>
                 <div class="col-lg-8 contactInputs">
                     <h1>@Model.Setting.Where(x => x.IsDelete == false).FirstOrDefault(x => x.Key == "ContactTitle").Value </h1>
