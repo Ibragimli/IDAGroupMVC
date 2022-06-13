@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <header style="background-image: url( @Url.Content("~/uploads/settings/")@settings.FirstOrDefault(x => x.Key == "HeadBackgroundImage").Value); background-repeat: no-repeat;     background-size: cover; background-position: center;   height: 55vh; ">
+    <header style="background-image: url( @Url.Content("~/uploads/settings/header/")@settings.FirstOrDefault(x => x.Key == "HeadBackgroundImage").Value); background-repeat: no-repeat;     background-size: cover; background-position: center;   height: 55vh; ">
         <section id="headers">
             <div class="container">
                 <div class="row">
@@ -126,10 +126,10 @@
             <div class="container">
                 <div class="row">
                     <div class="CopyrightText text-center p-4">
-                        @settings.FirstOrDefault(x => x.Key == "CopyRight").Value
+                        @settings.FirstOrDefault(x => x.Key == "CopyRightFoot").Value
 
                         <a class="text-reset fw-bold" target="_blank"
-                           href="https://www.instagram.com/elnur.444">@settings.FirstOrDefault(x => x.Key == "CopyRightText").Value</a>
+                           href="https://www.instagram.com/elnur.444">@settings.FirstOrDefault(x => x.Key == "CopyRightTextFoot").Value</a>
                     </div>
                 </div>
             </div>

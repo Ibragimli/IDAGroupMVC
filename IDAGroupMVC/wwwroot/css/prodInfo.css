@@ -10,6 +10,9 @@
       font-size: 18px;
       letter-spacing: 0.2px;
       color: #747474; }
+    #productInfo .container .row .infoLeft .infoTitle img {
+      max-width: 251.13px;
+      max-height: 140px; }
   #productInfo .container .row .infoLeft .infoText {
     margin-top: 20px; }
     #productInfo .container .row .infoLeft .infoText p {
