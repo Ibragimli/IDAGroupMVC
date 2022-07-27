@@ -33,18 +33,10 @@
 
                                 </div>
 
-                                <div class="col-lg-4 mb-3">
-                                    <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">IsHome</label>
-                                    <div class="form-check">
-                                        <input asp-for="IsHome" class="form-check-input" type="radio" value="@true" checked>
-                                        <label class="form-check-label" asp-for="IsHome">
-                                            True
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input asp-for="IsHome" class="form-check-input" type="radio" value="@false" checked>
-                                        <label class="form-check-label" asp-for="IsHome">
-                                            False
+                                <div style=" display: flex; justify-content: center; align-items: center; " class="col-lg-4 mb-3">
+                                    <div class="form-group form-check">
+                                        <label asp-for="IsHome" class="control-label" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">
+                                            <input class="form-check-input" asp-for="IsHome" /> @Html.DisplayNameFor(model => model.IsHome)
                                         </label>
                                     </div>
                                     <span class="text-danger" asp-validation-for="IsHome"></span>

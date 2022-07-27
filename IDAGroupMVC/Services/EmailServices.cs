@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using IDAGroupMVC.Models;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using MimeKit.Text;
@@ -11,6 +12,7 @@ namespace IDAGroupMVC.Services
 {
     public class EmailServices
     {
+
         public interface IEmailService
         {
             void Send(string to, string subject, string html);
@@ -18,19 +20,27 @@ namespace IDAGroupMVC.Services
 
         public class EmailService : IEmailService
         {
+            private readonly DataContext _context;
+
+            public EmailService(DataContext context)
+            {
+                _context = context;
+            }
             public void Send(string to, string subject, string html)
             {
+                var context = _context.EmailSetting.FirstOrDefault(x => x.Id == 1);
+
                 // create message
                 var email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse("desteknetmeds@gmail.com"));
+                email.From.Add(MailboxAddress.Parse(context.SmtpEmail));
                 email.To.Add(MailboxAddress.Parse(to));
                 email.Subject = subject;
                 email.Body = new TextPart(TextFormat.Html) { Text = html };
 
                 // send email
                 using var smtp = new SmtpClient();
-                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("desteknetmeds@gmail.com", "Netmed123");
+                smtp.Connect(context.SmtpHost, context.SmtpPort, SecureSocketOptions.StartTls);
+                smtp.Authenticate(context.SmtpEmail, context.SmtpPassword);
                 smtp.Send(email);
                 smtp.Disconnect(true);
             }

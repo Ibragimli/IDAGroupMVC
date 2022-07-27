@@ -19,5 +19,6 @@ namespace IDAGroupMVC.Models
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<ViewCount> ViewCounts { get; set; }
         public DbSet<ClickDate> ClickDates { get; set; }
+        public DbSet<EmailSetting> EmailSetting { get; set; }
     }
 }

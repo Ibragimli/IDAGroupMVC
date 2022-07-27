@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>IDAGroupDNZ</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         <section id="headers">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-sm-4 headLogo">
+                    <div class="col-lg-4 col-sm-5 col-4 headLogo">
                         <a class="navbar-brand" asp-action="index" asp-controller="home">
                             <img src="~/uploads/settings/header/@settings.FirstOrDefault(x => x.Key == "HeadLogoImage").Value" alt="" width="30" height="24"
                                  class="d-inline-block align-text-top">
@@ -40,8 +40,27 @@
                     </div>
 
 
-                    <div class="col-lg-8 col-sm-8 headNav">
-                        <ul class="nav nav-pills ms-4">
+                    <div class="col-lg-8 col-sm-4 col-3 headNav">
+                        <nav class="navbar navbar-expand-lg ">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon">
+                                    <i class="fa-solid fa-bars"></i>
+                                </span>
+                            </button>
+                            <div class="navbarNavMain">
+                                <ul class="navbar-nav nav">
+                                    <li class="nav-item"><a asp-action="index" asp-controller="home" class="nav-link " aria-current="page">  @settings.FirstOrDefault(x => x.Key == "HeadNav1").Value</a></li>
+                                    <li class="nav-item"><a asp-action="products" asp-controller="company" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav2").Value</a></li>
+                                    <li class="nav-item"><a asp-action="about" asp-controller="about" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav3").Value</a></li>
+                                    <li class="nav-item"><a asp-action="contactUs" asp-controller="contact" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav4").Value</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="row navRow">
+                    <div class="collapse navbar-collapse navbarNav" id="navbarNav">
+                        <ul class="navbar-nav nav">
                             <li class="nav-item"><a asp-action="index" asp-controller="home" class="nav-link " aria-current="page">  @settings.FirstOrDefault(x => x.Key == "HeadNav1").Value</a></li>
                             <li class="nav-item"><a asp-action="products" asp-controller="company" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav2").Value</a></li>
                             <li class="nav-item"><a asp-action="about" asp-controller="about" class="nav-link">  @settings.FirstOrDefault(x => x.Key == "HeadNav3").Value</a></li>
@@ -49,7 +68,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </section>
     </header>

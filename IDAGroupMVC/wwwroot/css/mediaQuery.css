@@ -1,0 +1,43 @@
+@media only screen and (max-width: 992px) {
+  header {
+    height: 45vh !important;
+    transition: all 0.4s; }
+    header #headers .container .row {
+      display: flex !important;
+      justify-content: space-around !important; }
+      header #headers .container .row .headNav {
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: space-around !important; }
+        header #headers .container .row .headNav nav {
+          display: flex;
+          justify-content: center !important; }
+          header #headers .container .row .headNav nav .navbarNavMain {
+            display: none; }
+            header #headers .container .row .headNav nav .navbarNavMain ul {
+              display: flex !important;
+              justify-content: center !important;
+              align-items: center !important; }
+              header #headers .container .row .headNav nav .navbarNavMain ul li {
+                margin-left: 0 !important; }
+    header #headers .container .navRow {
+      display: block !important; }
+      header #headers .container .navRow .navbarNav ul {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important; }
+        header #headers .container .navRow .navbarNav ul li {
+          margin-left: 0 !important; }
+          header #headers .container .navRow .navbarNav ul li a {
+            padding-right: 7px;
+            padding-left: 7px;
+            margin-bottom: 2px; } }
+
+@media only screen and (max-width: 600px) {
+  header {
+    height: 35vh !important;
+    transition: all 0.4s; }
+  #slider .container .row .mainSlider .owl-stage-outer .owl-stage .owl-item {
+    display: flex !important;
+    justify-content: center !important; } }

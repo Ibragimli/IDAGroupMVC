@@ -1,0 +1,110 @@
+@media only screen and (max-width: 992px) {
+    header {
+        height: 45vh !important;
+        transition: all 0.4s;
+        #headers {
+            .container {
+                .row {
+                    display: flex !important;
+                    justify-content: space-around !important;
+
+                    .headLogo {
+
+                        a {
+                            img {}
+                        }
+                    }
+
+                    .headNav {
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        display: flex !important;
+                        justify-content: space-around !important;
+
+                        nav {
+                            display: flex;
+                            justify-content: center !important;
+
+                            button {
+                                span {
+                                    i {}
+                                }
+                            }
+
+                            .navbarNavMain {
+                                display: none;
+
+                                ul {
+                                    display: flex !important;
+                                    justify-content: center !important;
+                                    align-items: center !important;
+
+                                    li {
+                                        margin-left: 0 !important;
+
+                                        a {}
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                .navRow {
+                    display: block !important;
+
+                    .navbarNav {
+
+                        ul {
+                            display: flex !important;
+                            justify-content: center !important;
+                            align-items: center !important;
+
+                            li {
+                                margin-left: 0 !important;
+
+                                a {
+                                    padding-right: 7px;
+                                    padding-left: 7px;
+                                    margin-bottom: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+   header{
+    height: 35vh !important;
+    transition: all 0.4s;
+
+   }
+    #slider {
+        .container {
+            .row {
+                .mainSlider {
+
+                    .owl-stage-outer {
+                        .owl-stage {
+                            .owl-item {
+                                display: flex !important;
+                                justify-content: center !important;
+
+                                .item {
+                                    img {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

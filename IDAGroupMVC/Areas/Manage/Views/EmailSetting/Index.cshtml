@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model EmailSetting
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Email Setting</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <form method="post" asp-action="edit">
+
+                                <div class="row">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="mb-3 col-md-6">
+                                        <label asp-for="SmtpEmail" class="form-label">Email</label>
+                                        <input asp-for="SmtpEmail" type="email" class="form-control" placeholder="........">
+                                        <span asp-validation-for="SmtpEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label asp-for="SmtpPassword" class="form-label">Password</label>
+                                        <input asp-for="SmtpPassword" type="text" class="form-control" placeholder="........">
+                                        <span asp-validation-for="SmtpPassword" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label asp-for="SmtpHost" class="form-label">SmtpHost</label>
+                                        <input asp-for="SmtpHost" type="text" class="form-control" placeholder="........">
+                                        <span asp-validation-for="SmtpHost" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label asp-for="SmtpPort" class="form-label">Port</label>
+                                        <input asp-for="SmtpPort" type="text" class="form-control" placeholder="........">
+                                        <span asp-validation-for="SmtpPort" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                </div>
+                                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/manage/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/manage/js/plugins-init/datatables.init.js"></script>
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
